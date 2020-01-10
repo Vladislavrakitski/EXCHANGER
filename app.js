@@ -12,6 +12,7 @@ async function start() {
       useUnifiedTopology: true,
       useCreateIndex: true
     });
+    app.use('/', express.static(__dirname + '/public'));
     app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`));
   } catch (e) {
     console.log('Server Error', e.message);
