@@ -4,7 +4,8 @@
   "description": "mern practice",
   "private": true,
   "scripts": {
-    "dev": "nodemon app.js",
+    "dev:server": "nodemon app.js",
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
     "compile-server": "webpack --config webpack.server-config.js"
   },
   "keywords": [
@@ -21,14 +22,24 @@
   "author": "Vladislav Rakitski <rakitski457@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
+    "html-webpack-plugin": "^3.2.0",
     "nodemon": "^2.0.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.8.3",
     "config": "^3.2.4",
     "express": "^4.17.1",
     "express-validator": "^6.3.1",
-    "mongoose": "^5.8.6"
+    "mongoose": "^5.8.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }
