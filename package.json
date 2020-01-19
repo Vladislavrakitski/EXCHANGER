@@ -2,9 +2,10 @@
   "name": "mern",
   "version": "1.0.0",
   "description": "mern practice",
-  "main": "app.js",
+  "private": true,
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "compile-server": "webpack --config webpack.server-config.js"
   },
   "keywords": [
     "react",
@@ -20,7 +21,9 @@
   "author": "Vladislav Rakitski <rakitski457@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
     "config": "^3.2.4",
