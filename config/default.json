@@ -1,4 +1,3 @@
 {
-  "port": 5000,
-  "mongoUri": "mongodb+srv://Vladislavrakitski:vlad1113@exchanger-t9bk6.azure.mongodb.net/app?retryWrites=true&w=majority"
+  "port": 5000
 }
