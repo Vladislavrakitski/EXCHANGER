@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "dev:server": "nodemon app.js",
+    "server": "nodemon app.js",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "compile-server": "webpack --config webpack.server-config.js"
   },

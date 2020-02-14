@@ -13,14 +13,26 @@ const bids = new Client({
   database: config.get('dataBase')
 })
 
-//app.listen(PORT, () => console.log(`Web server has been started on port ${PORT}`))
+
+
+app.get("/", async (req, res) => {
+  const rows = await getAllBids();
+  res.setHeader("content-type", "application/json")
+  res.send(rows)
+})
+
+app.listen(PORT, () => console.log(`Web server has been started on port ${PORT}`))
+
+
+
+
 
 async function getAllBids() {
   try{
     await bids.connect()
     console.log('Connected successfully.')
     const {rows} = await bids.query('SELECT * FROM bids')
-    console.table(rows)
+    return rows
   } catch (e) {
     console.log(`Something wrong happend ${e}`)
   } finally {
@@ -41,8 +53,6 @@ async function createBid(bid){
     console.log('Client disconnected successfully.')    
   }
 }
-
-getAllBids()
 
 
 
