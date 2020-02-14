@@ -4,6 +4,7 @@
   "description": "mern practice",
   "private": true,
   "scripts": {
+    "start": "node app.js",
     "dev:server": "nodemon app.js",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "compile-server": "webpack --config webpack.server-config.js"
@@ -11,7 +12,8 @@
   "keywords": [
     "react",
     "express",
-    "node"
+    "node",
+    "postgreSQL"
   ],
   "repository": {
     "type": "git",
@@ -36,6 +38,8 @@
     "config": "^3.2.4",
     "express": "^4.17.1",
     "express-validator": "^6.3.1",
+    "pg": "^7.18.1",
+    "pg-cursor": "^2.1.5",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }
