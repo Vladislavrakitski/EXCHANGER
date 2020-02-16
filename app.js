@@ -13,18 +13,16 @@ const bids = new Client({
   database: config.get('dataBase')
 })
 
-
-
-app.get("/", async (req, res) => {
-  const rows = await getAllBids();
-  res.setHeader("content-type", "application/json")
-  res.send(rows)
-})
+// app.use('/', express.static(__dirname + '/dist'))
 
 app.listen(PORT, () => console.log(`Web server has been started on port ${PORT}`))
 
 
-
+// app.get("/", async (req, res) => {
+//   const rows = await getAllBids();
+//   res.setHeader("content-type", "application/json")
+//   res.send(rows)
+// })
 
 
 async function getAllBids() {
