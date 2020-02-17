@@ -1,12 +1,17 @@
-import React, {Component} from 'react'
-import Main from './components/Main'
+import React from 'react'
+import {BrowserRouter as Router} from 'react-router-dom';
+import {useRoutes} from './routes';
 
-export default class App extends Component {
-  render() {
-    return(
+function App () {
+  const routes = useRoutes()
+
+  return(
+    <Router>
       <div>
-        <Main/>
+        {routes}
       </div>
-    )
-  }
+    </Router>
+  )
 }
+
+export default App

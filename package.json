@@ -9,9 +9,8 @@
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "client": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
-    "full": "concurrently \"npm run dev\" \"npm run server\""
+    "full": "concurrently \"npm run client\" \"npm run server\""
   },
-  "proxy": "http://localhost:5000",
   "browserslist": "> 0.25%, not dead",
   "keywords": [
     "react",
@@ -49,6 +48,7 @@
     "pg": "^7.18.1",
     "pg-cursor": "^2.1.5",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2"
   }
 }
