@@ -2,6 +2,7 @@ const express = require('express')
 const config = require('config')
 const {Client} = require('pg')
 const path = require('path')
+const cors = require('cors')
 
 const app = express()
 const PORT = config.get('port') || 5000
@@ -16,10 +17,10 @@ const bids = new Client({
 
 app.use('/', express.static(path.join(__dirname, 'client')))
 
-app.get('/main', async (req, res) => {
-  const rows = await getAllBids();
+app.get('/main', cors(), async (req, res) => {
+  const rows = await getAllBids()
   res.setHeader("content-type", "application/json")
-  res.send(rows)
+  res.send(JSON.stringify(rows))
 })
 
 app.listen(PORT, () => console.log(`Web server has been started on port ${PORT}`))
