@@ -1,28 +1,60 @@
 import React, {Component} from 'react'
+import Card from './card'
 
-function App () {
+export default class App extends Component{
 
-  let bid
-  getBids()
+  constructor(props){
+    super(props)
+    this.getBids = this.getBids.bind(this)
+    this.state = { 
+      bids: [],
+      isLoading: false
+    }
+  }
 
-  async function getBids () {
+  componentDidMount(){
+    this.getBids()
+  }
+
+  getBids() {
+    this.setState({isLoading: true})
     try{
-      await fetch('http://localhost:5000/main')
+      fetch('http://localhost:5000/main')
         .then(res => res.json())
         .then(bids => {
-          bid = bids[0]
+          this.setState({bids})
+          this.setState({isLoading: false})
         })
-        console.log(bid)
     } catch (e) {
       console.log('Error reading the bids.', e)
     }
   }
 
-  return (
-    <div>
-      
-    </div>
-  )
-}
 
-export default App
+
+
+  render(){
+
+    const { bids, isLoading } = this.state;
+    let card = null;
+
+    if(isLoading){
+      card = (
+        <div>
+          <h2>Loading ...</h2>
+        </div>
+      )   
+    }
+    else if (bids.length > 0) {
+      card = (
+        <Card bids={bids} />
+      )  
+    }
+    
+    return(
+      <div className='api-data'>
+        {card}
+      </div>
+    )
+  }
+}
