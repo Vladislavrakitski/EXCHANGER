@@ -17,7 +17,7 @@ const bids = new Client({
 
 app.use('/', express.static(path.join(__dirname, 'client')))
 
-app.get('/main', cors(), async (req, res) => {
+app.get('/admin', cors(), async (req, res) => {
   const rows = await getAllBids()
   res.setHeader("content-type", "application/json")
   res.send(JSON.stringify(rows))
