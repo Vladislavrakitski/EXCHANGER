@@ -25,7 +25,7 @@ app.get('/admin', cors(), async (req, res) => {
 
 app.listen(PORT, () => console.log(`Web server has been started on port ${PORT}`))
 
-
+// connect to database
 
 async function getAllBids() {
   try{
