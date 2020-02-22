@@ -1,12 +1,13 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-export default class Main extends Component {
+const Main = () => {
 
-  render() {
-    return(
-      <div>
-        <h1>Main page</h1>
-      </div>
-    )
-  }
+  return(
+    <div>
+      <h1>Main page</h1>
+    </div>
+  )
+
 }
+
+export default Main

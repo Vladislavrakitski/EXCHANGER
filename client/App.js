@@ -1,19 +1,34 @@
-import React, {Component} from 'react'
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import React from 'react'
+import {BrowserRouter as Router, Switch, Route, Redirect, Link} from 'react-router-dom';
 import Admin from './components/Admin'
 import Main from './components/Main'
 
-export default class App extends Component {
+const App = () => {
 
-  render() {
-    return(
-      <Router>
+  return(
+    <Router>
+      <div>
+
+        <nav>
+          <ul>
+            <li>
+              <Link to="/main">Main Page</Link>
+            </li>
+            <li>
+              <Link to="/admin">Admin Page</Link>
+            </li>
+          </ul>
+        </nav>
+
         <Switch>
-          <Route path="/main" component={Main} exact />
-          <Route path="/admin" component={Admin} />
-          <Redirect to="/admin" />
+          <Route path='/main' render={Main} />
+          <Route path='/admin' render={Admin} />
+          <Redirect to='/main' />
         </Switch>
-      </Router>
-    )
-  }
+
+      </div>
+    </Router>
+  )
 }
+
+export default App
