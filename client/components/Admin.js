@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Card from './Сard'
 
-const Admin = function(){
+const Admin = () => {
 
   const [bids, setBids] = useState([]);
 
