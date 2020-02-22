@@ -4,12 +4,11 @@
   "description": "mern practice",
   "private": true,
   "scripts": {
-    "start": "node app.js",
+    "start": "concurrently \"npm run client\" \"npm run server\"",
     "server": "nodemon app.js",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "client": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
-    "full": "concurrently \"npm run client\" \"npm run server\""
+    "client": "cross-env NODE_ENV=development webpack-dev-server --mode development --open"
   },
   "browserslist": "> 0.25%, not dead",
   "keywords": [

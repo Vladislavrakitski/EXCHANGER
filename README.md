@@ -33,7 +33,7 @@ npm run client
 ##### If you want to run the full project, use only one command
 
 ```bash
-npm run full
+npm start
 ```
 
 ##### Good luck! ;)

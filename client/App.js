@@ -21,8 +21,8 @@ const App = () => {
         </nav>
 
         <Switch>
-          <Route path='/main' render={Main} />
-          <Route path='/admin' render={Admin} />
+          <Route path='/main' component={Main} />
+          <Route path='/admin' component={Admin} />
           <Redirect to='/main' />
         </Switch>
 
