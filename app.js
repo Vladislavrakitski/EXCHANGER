@@ -24,21 +24,34 @@ app.get('/admin', cors(), async (req, res) => {
 })
 
 app.listen(PORT, () => console.log(`Web server has been started on port ${PORT}`))
-
+start()
 // connect to database
+
+async function start() {
+  await connect()
+}
+
+async function connect() {
+  try {
+    await bids.connect()
+    console.log('Connected successfully.')
+  }
+  catch(e) {
+    console.error(`Failed to connect ${e}`)
+  }
+}
 
 async function getAllBids() {
   try{
-    await bids.connect()
-    console.log('Connected successfully.')
     const {rows} = await bids.query('SELECT * FROM bids')
     return rows
   } catch (e) {
     console.log(`Something wrong happend ${e}`)
-  } finally {
-    await bids.end()
-    console.log('Client disconnected successfully.')    
-  }
+  } 
+  // finally {
+  //   await bids.end()
+  //   console.log('Client disconnected successfully.')    
+  // }
 }
 
 async function createBid(bid){
