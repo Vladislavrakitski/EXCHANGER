@@ -1,0 +1,26 @@
+/node_modules
+/dist
+/public
+creds
+
+# MACOS files
+*.DS_Store/*
+
+# IDE files
+.idea/*
+.vscode/*
+
+# Logs
+logs
+*.log
+
+# env
+.env
+
+#lock-files
+package-lock.json
+yarn.lock
+
+# production
+/build
+

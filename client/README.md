@@ -7,33 +7,29 @@ Now Crypto Exchanger is my home project. I do this because, I need to improve my
 Use the package manager [npm](https://www.npmjs.com/) to install all packages.
 
 ```bash
-npm install 
+npm install
 ```
 
 ## Server
 
 ##### After that you should start the server
+
 I use [nodemon](https://nodemon.io/) to automatically restart the server.
 
 ```bash
+cd server
 npm run server
 ```
 
 ## Client
 
 ##### Next you need to start the client.
+
 I use [react](https://ru.reactjs.org/) on the client part
 
 ```bash
+cd client
 npm run client
-```
-
-## Full start
-
-##### If you want to run the full project, use only one command
-
-```bash
-npm start
 ```
 
 ##### Good luck! ;)

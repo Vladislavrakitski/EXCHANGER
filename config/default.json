@@ -1,6 +1,0 @@
-{
-  "port": 5000,
-  "dataPort": 5432,
-  "dataHost": "localhost",
-  "dataBase": "bidsDB"
-}
