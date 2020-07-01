@@ -4,7 +4,11 @@
 creds
 
 # MACOS files
+**/._.DS_Store
+**/.DS_Store
 *.DS_Store/*
+*.DS_Store
+.DS_Store
 
 # IDE files
 .idea/*

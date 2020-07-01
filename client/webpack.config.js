@@ -4,12 +4,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const DotEnv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
-const filename = ext => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
+const filename = ext => (isDev ? `[name].${ext}` : `[name]---[hash].${ext}`);
 
 const optimization = () => {
 	const config = {
@@ -60,24 +61,39 @@ const cssLoaders = extra => {
 	return loaders;
 };
 
+const assetsLoader = asset => {
+	const loader = [
+		{
+			loader: 'file-loader',
+			options: {
+				name: filename('ext'),
+				outputPath: `assets/${asset}/`,
+			},
+		},
+	];
+
+	return loader;
+};
+
 const plugins = () => {
 	const base = [
 		new HTMLWebpackPlugin({
-			template: './index.html',
+			template: 'src/public/index.html',
+			favicon: 'src/public/favicon.ico',
+			filename: 'index.html',
+			title: 'EXCHANGER',
+			hash: !isDev,
 			minify: {
 				collapseWhitespace: isProd,
 			},
 		}),
 		new CleanWebpackPlugin(),
-		new CopyWebpackPlugin([
-			{
-				from: path.resolve(__dirname, './favicon.ico'),
-				to: path.resolve(__dirname, 'dist'),
-			},
-		]),
+		new CopyWebpackPlugin(),
 		new MiniCssExtractPlugin({
 			filename: filename('css'),
+			chunkFilename: isDev ? '[id].css' : '[id].[hash].css',
 		}),
+		new DotEnv(),
 	];
 
 	if (isProd) {
@@ -88,27 +104,49 @@ const plugins = () => {
 };
 
 module.exports = {
-	context: path.resolve(__dirname, ''),
 	mode: 'development',
-	entry: {
-		main: ['@babel/polyfill', './index.js'],
+	entry: `./src/index.jsx`,
+	resolve: {
+		alias: {
+			'@src': path.resolve(__dirname, 'src'),
+			'@images': path.resolve(__dirname, 'src/assets/images'),
+			'@store': path.resolve(__dirname, 'src/store'),
+			'@Styles': path.resolve(__dirname, 'src/Styles'),
+		},
+		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.scss'],
 	},
 	output: {
+		publicPath: '/',
 		filename: filename('js'),
-		path: path.resolve(__dirname, 'dist'),
+		sourceMapFilename: filename('js.map'),
+		path: path.resolve(__dirname, './dist'),
 	},
-	devtool: isDev ? 'source-map' : '',
+	devtool: isDev ? 'eval-cheap-module-source-map' : undefined,
 	optimization: optimization(),
 	devServer: {
 		port: 3000,
 		hot: isDev,
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+		},
 	},
 	plugins: plugins(),
 	module: {
 		rules: [
 			{
-				test: /\.(png|jpg|svg|gif)$/,
-				use: ['file-loader'],
+				test: /\.(jp(e*)g|png|gif|ico)$/,
+				include: [path.resolve(__dirname, 'src/assets/images/')],
+				use: assetsLoader('images'),
+			},
+			{
+				test: /.*\.svg$/,
+				include: [path.resolve(__dirname, 'src/assets/images/')],
+				use: assetsLoader('images'),
+			},
+			{
+				test: /\.(woff|woff2|eot|ttf|otf)$/,
+				include: [path.resolve(__dirname, 'src/assets/fonts/')],
+				use: assetsLoader('fonts'),
 			},
 			{
 				test: /\.css$/,
@@ -123,7 +161,7 @@ module.exports = {
 				use: cssLoaders('sass-loader'),
 			},
 			{
-				test: /\.js$/,
+				test: /\.js[x]$/,
 				exclude: /node_modules/,
 				loader: {
 					loader: 'babel-loader',
@@ -131,7 +169,7 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.ts$/,
+				test: /\.ts[x]$/,
 				exclude: /node_modules/,
 				loader: {
 					loader: 'babel-loader',
