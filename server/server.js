@@ -1,8 +1,13 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
 const express = require('express');
 
+const db = require('./model/db');
 const config = require('./config');
+
 const app = express();
+
+dotenv.config();
+db.query('SELECT 1');
 
 (async function () {
 	try {
