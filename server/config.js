@@ -1,16 +1,16 @@
-const { env } = require('process');
+require('dotenv').config();
 
 module.exports = {
-	env: env.APP_ENV || process.NODE_ENV || 'production',
+	env: process.env.APP_ENV || process.env.NODE_ENV || 'production',
 	server: {
-		host: env.APP_HOST || '127.0.0.1',
-		port: parseInt(env.APP_PORT || '8000'),
+		host: process.env.APP_HOST || '127.0.0.1',
+		port: parseInt(process.env.APP_PORT || '8000'),
 	},
 	database: {
-		host: env.DATABASE_HOST || '127.0.0.1',
-		port: parseInt(env.DATABASE_PORT || '3306'),
-		user: env.DATABASE_USER,
-		password: env.DATABASE_PASSWORD || 'root' || '',
-		database: env.DATABASE_DB || 'exchanger',
+		host: process.env.DATABASE_HOST || '127.0.0.1',
+		port: parseInt(process.env.DATABASE_PORT || '3306'),
+		user: process.env.DATABASE_USER,
+		password: process.env.DATABASE_PASSWORD,
+		database: process.env.DATABASE_DB,
 	},
 };

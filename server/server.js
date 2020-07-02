@@ -1,4 +1,3 @@
-const dotenv = require('dotenv');
 const express = require('express');
 
 const db = require('./model/db');
@@ -6,12 +5,11 @@ const config = require('./config');
 
 const app = express();
 
-dotenv.config();
 db.query('SELECT 1');
 
-(async function () {
+(async () => {
 	try {
-		app.listen(config.server.port, config.server.host, function () {
+		app.listen(config.server.port, config.server.host, () => {
 			console.log(`Web server has been started on port ${config.server.port}`);
 		});
 	} catch (err) {
