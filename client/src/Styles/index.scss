@@ -1,0 +1,12 @@
+@import 'reset';
+
+* {
+	font-family: Roboto, sans-serif;
+	box-sizing: border-box;
+	font-weight: 300;
+	outline: none;
+
+	&:focus {
+		outline: none;
+	}
+}

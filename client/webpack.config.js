@@ -103,79 +103,82 @@ const plugins = () => {
 	return base;
 };
 
-module.exports = {
-	mode: 'development',
-	entry: `./src/index.jsx`,
-	resolve: {
-		alias: {
-			'@src': path.resolve(__dirname, 'src'),
-			'@images': path.resolve(__dirname, 'src/assets/images'),
-			'@store': path.resolve(__dirname, 'src/store'),
-			'@Styles': path.resolve(__dirname, 'src/Styles'),
+module.exports = () => {
+	return {
+		mode: 'development',
+		entry: `./src/index.jsx`,
+		resolve: {
+			alias: {
+				'@src': path.resolve(__dirname, 'src'),
+				'@images': path.resolve(__dirname, 'src/assets/images'),
+				'@store': path.resolve(__dirname, 'src/store'),
+				'@Styles': path.resolve(__dirname, 'src/Styles'),
+			},
+			extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.scss'],
 		},
-		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.scss'],
-	},
-	output: {
-		publicPath: '/',
-		filename: filename('js'),
-		sourceMapFilename: filename('js.map'),
-		path: path.resolve(__dirname, './dist'),
-	},
-	devtool: isDev ? 'eval-cheap-module-source-map' : undefined,
-	optimization: optimization(),
-	devServer: {
-		port: 3000,
-		hot: isDev,
-		headers: {
-			'Access-Control-Allow-Origin': '*',
+		output: {
+			publicPath: '/',
+			filename: filename('js'),
+			sourceMapFilename: filename('js.map'),
+			path: path.resolve(__dirname, './dist'),
 		},
-	},
-	plugins: plugins(),
-	module: {
-		rules: [
-			{
-				test: /\.(jp(e*)g|png|gif|ico)$/,
-				include: [path.resolve(__dirname, 'src/assets/images/')],
-				use: assetsLoader('images'),
+		devtool: isDev ? 'eval-cheap-module-source-map' : undefined,
+		optimization: optimization(),
+		devServer: {
+			port: 3000,
+			hot: isDev,
+			historyApiFallback: true,
+			headers: {
+				'Access-Control-Allow-Origin': '*',
 			},
-			{
-				test: /.*\.svg$/,
-				include: [path.resolve(__dirname, 'src/assets/images/')],
-				use: assetsLoader('images'),
-			},
-			{
-				test: /\.(woff|woff2|eot|ttf|otf)$/,
-				include: [path.resolve(__dirname, 'src/assets/fonts/')],
-				use: assetsLoader('fonts'),
-			},
-			{
-				test: /\.css$/,
-				use: cssLoaders(),
-			},
-			{
-				test: /\.less$/,
-				use: cssLoaders('less-loader'),
-			},
-			{
-				test: /\.s[ac]ss$/,
-				use: cssLoaders('sass-loader'),
-			},
-			{
-				test: /\.js[x]$/,
-				exclude: /node_modules/,
-				loader: {
-					loader: 'babel-loader',
-					options: babelOptions('@babel/preset-react'),
+		},
+		plugins: plugins(),
+		module: {
+			rules: [
+				{
+					test: /\.(jp(e*)g|png|gif|ico)$/,
+					include: [path.resolve(__dirname, 'src/assets/images/')],
+					use: assetsLoader('images'),
 				},
-			},
-			{
-				test: /\.ts[x]$/,
-				exclude: /node_modules/,
-				loader: {
-					loader: 'babel-loader',
-					options: babelOptions('@babel/preset-typescript'),
+				{
+					test: /.*\.svg$/,
+					include: [path.resolve(__dirname, 'src/assets/images/')],
+					use: assetsLoader('images'),
 				},
-			},
-		],
-	},
+				{
+					test: /\.(woff|woff2|eot|ttf|otf)$/,
+					include: [path.resolve(__dirname, 'src/assets/fonts/')],
+					use: assetsLoader('fonts'),
+				},
+				{
+					test: /\.css$/,
+					use: cssLoaders(),
+				},
+				{
+					test: /\.less$/,
+					use: cssLoaders('less-loader'),
+				},
+				{
+					test: /\.s[ac]ss$/,
+					use: cssLoaders('sass-loader'),
+				},
+				{
+					test: /\.js[x]?$/,
+					exclude: /node_modules/,
+					loader: {
+						loader: 'babel-loader',
+						options: babelOptions('@babel/preset-react'),
+					},
+				},
+				{
+					test: /\.ts[x]?$/,
+					exclude: /node_modules/,
+					loader: {
+						loader: 'babel-loader',
+						options: babelOptions('@babel/preset-typescript'),
+					},
+				},
+			],
+		},
+	};
 };
