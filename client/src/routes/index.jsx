@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import { PageLayout } from '@src/containers/Common';
+import { AuthRoutes } from './AuthRoutes';
+import { UnAuthRoutes } from './UnAuthRoutes';
 
 export const Routes = () => {
+	const isAuthorized = true;
 	return (
 		<Router>
-			<Switch>
-				<PageLayout></PageLayout>
-			</Switch>
+			<Switch>{isAuthorized ? <AuthRoutes /> : <UnAuthRoutes />}</Switch>
 		</Router>
 	);
 };
