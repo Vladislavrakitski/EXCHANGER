@@ -1,0 +1,39 @@
+.title {
+	font-size: 20px;
+	font-weight: 400;
+	margin: 10px;
+}
+
+.container {
+	margin: auto;
+	height: 300px;
+	width: 500px;
+	border-radius: 15px;
+	background: rgb(252, 246, 255);
+
+	.button {
+		background: rgb(110, 110, 110);
+		color: white;
+		margin: 18px;
+		border-radius: 7px;
+		border: none;
+		height: 40px;
+		width: 80px;
+	}
+
+	.sellBlock {
+		background: rgb(180, 180, 180);
+		border-radius: 5px;
+		margin: auto;
+		height: 200px;
+		width: 450px;
+	}
+
+	.buyBlock {
+		background: red;
+		border-radius: 5px;
+		margin: auto;
+		height: 200px;
+		width: 450px;
+	}
+}

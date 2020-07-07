@@ -4,7 +4,7 @@ import { AuthRoutes } from './AuthRoutes';
 import { UnAuthRoutes } from './UnAuthRoutes';
 
 export const Routes = () => {
-	const isAuthorized = true;
+	const isAuthorized = false;
 	return (
 		<Router>
 			<Switch>{isAuthorized ? <AuthRoutes /> : <UnAuthRoutes />}</Switch>

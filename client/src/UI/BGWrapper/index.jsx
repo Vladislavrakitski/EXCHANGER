@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const BGWrapper = styled('div')`
-	background: rgb(252, 176, 69);
-	background: radial-gradient(
-		circle,
-		rgba(252, 176, 69, 1) 0%,
-		rgba(255, 151, 115, 1) 48%,
-		rgba(255, 121, 66, 1) 100%
+	background: rgb(243, 216, 255);
+	background: linear-gradient(
+		145deg,
+		rgba(243, 216, 255, 1) 0%,
+		rgba(235, 214, 255, 1) 43%,
+		rgba(202, 192, 255, 1) 100%
 	);
 `;
 
